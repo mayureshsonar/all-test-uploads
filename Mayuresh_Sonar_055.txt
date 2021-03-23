@@ -1,0 +1,104 @@
+#########################
+Author: Mayuresh_Sonar
+PRN: 055
+Group No: 05
+Date of Creation: 12-03-2021
+#########################
+
+Q1.
+
+/**
+ * 
+ */
+package bill;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+/**
+ * @author Mayuresh
+ *
+ */
+public class BillCalc {
+
+	/**
+	 * @param args
+	 */
+	private int cust_id=101;
+	private int hotel_id= 1111;
+	private int room_type= 2;
+	private int room_rate= 1600;
+	private String check_in= "01/01/2020";
+	private String check_out= "02/01/2020";
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BillCalc bc= new BillCalc();
+		SimpleDateFormat format=new SimpleDateFormat("dd/mm/yyyy");
+		try{
+		Date check_in_date=format.parse(bc.check_in);
+		Date check_out_date=format.parse(bc.check_out);
+		long diff=check_out_date.getTime()-check_in_date.getTime();
+		long diff_days=TimeUnit.DAYS.convert(diff,TimeUnit.MILLISECONDS);
+		System.out.println("Number of days "+diff_days);
+		System.out.println("Total Bill is"+ (bc.room_rate*diff_days));
+		int bill_amount;
+		Scanner sc=new Scanner(System.in);
+		if(diff_days<1)	
+		System.out.println("Enter Service Charges");
+		int serv=sc.nextInt();
+		System.out.println("Bill amount is "+(serv+bc.room_rate*diff_days));
+		}
+		catch(ParseException e)
+		{
+		e.printStackTrace();
+
+		}
+	}
+}
+
+
+******************************************************************************************************************************************************************
+
+
+Q.2 What is DAO? Explain it.
+
+--> 	DAO pattern is used to separate low level data accessing API or operations from high level business services.
+
+	#Data Access Object Interface - This interface defines the standard operations to be performed on a model object(s).
+
+	#Data Access Object concrete class - This class implements above interface. 
+	This class is responsible to get data from a data source which can be database / xml or any other storage mechanism.
+
+	#Model Object or Value Object - This object is simple POJO containing get/set methods to store data retrieved using DAO class.
+
+******************************************************************************************************************************************************************
+
+Q.3 What is REST? Explain it.
+
+
+-->	REST represents REpresentational State Transfer; it is a relatively new aspect of writing web API.
+	RESTFUL is referred for web services written by applying REST architectural concept are called RESTful services, 
+	it focuses on system resources and how state of resource should be transported over HTTP protocol to different clients written in different language. 
+	In RESTFUL web service HTTP methods like GET, POST, PUT and DELETE can be used to perform CRUD operations.
+
+******************************************************************************************************************************************************************
+
+Q.4 What is CORS? Explain it.
+
+-->	Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the resources implemented in web browsers. 
+	It prevents the JavaScript code producing or consuming the requests against different origin.
+
+	For example, your web application is running on 8080 port and by using JavaScript you are trying to consuming RESTful web services from 9090 port. 
+	Under such situations, you will face the Cross-Origin Resource Sharing security issue on your web browsers.
+
+	Two requirements are needed to handle this issue −
+
+	RESTful web services should support the Cross-Origin Resource Sharing.
+
+	RESTful web service application should allow accessing the API(s) from the 8080 port.
+
+
+******************************************************************************************************************************************************************
